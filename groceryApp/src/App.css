@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: antiquewhite;
+}
+
+.glocery-list {
+    width: 50%;
+    margin: auto;
+    margin-top: 3rem;
+    text-transform: uppercase;
+    /* padding: 2rem; */
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: tomato;
+    padding: 0.5rem 1.2rem;
+    color: #fff;
+}
+
+.item {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: #aa9c9c 1px solid;
+    color: darkred;
+  }
+  
+.item:last-child {
+    border-bottom: none;
+}
+
+.left-item {
+    padding: 0 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+}
+
+.left-item button {
+    padding: 0.3rem;
+    border-radius: 50%;
+    border: 1px solid #aa9c9c;
+    background-color: inherit;
+    cursor: pointer;
+  }
+  
+.left-item button:hover {
+    border-color: red;
+}
+
+.quantity {
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 34%;
+    justify-content: space-between;
+    position: relative;
+}
+
+.quantity button {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    position: absolute;
+    color: darkred;
+}
+
+.quantity button.decrement:hover {
+    color: #fff;
+    background-color: red;
+}
+
+.quantity button.increment:hover {
+    background-color: forestgreen;
+    color: #fff;
+}
+
+.quantity button.increment {
+    left: 56%;
+    top: -7px;
+}
+
+.quantity button.decrement {
+    bottom: -7px;
+    left: 56.5%;
+}
+
+.quantity-amount {
+  font-weight: bold;
+}

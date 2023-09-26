@@ -1,0 +1,5 @@
+A controlled component is a component that renders a form element whose value is controlled by react 
+In react, components re render due to any of these three reasons;
+1. Update in state
+2. Update in prop
+3. Re-rednering of the parent component
