@@ -1,11 +1,12 @@
 import { useContext, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeContext from "../context/ThemeContext";
 import UserContext from "../context/UserContext";
 
 const UserSignIn = () => {
    const { accentColor } = useContext(ThemeContext);
    const navigate = useNavigate();
+   const location = useLocation()
 
    const {
       actions: { signIn },
@@ -19,6 +20,10 @@ const UserSignIn = () => {
    // Event Handlers
    const handleSubmit = async (event) => {
       event.preventDefault();
+      let from = '/authenticated';
+      if(location.state){
+         from = location.state.from
+      }
 
       const credentials = {
          username: username.current.value,
@@ -28,7 +33,7 @@ const UserSignIn = () => {
       try {
          const user = await signIn(credentials);
          if(user) {
-          navigate('/authenticated')
+          navigate(from)
          } else {
           setErrors(['sign in was unsuccessful'])
          }
