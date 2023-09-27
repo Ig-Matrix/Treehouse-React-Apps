@@ -1,11 +1,18 @@
+import Cookies from "js-cookie";
 import { createContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext(null);
 
 export const ThemeProvider = (props) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [accentColor, setAccentColor] = useState('#63537d');
-  const [fontPercentage, setFontPercentage] = useState(100);
+  const cookie = Cookies.get('defaultTheme')
+  const defaultTheme = cookie ? JSON.parse(cookie) : {
+    isDarkMode:false,
+    accentColor:'#63537d',
+    fontPercentage:100
+  }
+  const [isDarkMode, setIsDarkMode] = useState(defaultTheme.isDarkMode);
+  const [accentColor, setAccentColor] = useState(defaultTheme.accentColor);
+  const [fontPercentage, setFontPercentage] = useState(defaultTheme.fontPercentage);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -14,7 +21,15 @@ export const ThemeProvider = (props) => {
       document.body.classList.remove('dark');
     }
     document.body.style.fontSize = `${fontPercentage}%`;
-  }, [isDarkMode, fontPercentage]);
+
+    const theme = {
+      isDarkMode,
+      fontPercentage,
+      accentColor
+    }
+
+    Cookies.set('defaultTheme', JSON.stringify(theme)) //cookies.set not only creates a new cookie, but it updates the cokies value if you provide  a name of a cookie that already exists
+  }, [isDarkMode, fontPercentage, accentColor]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(currentMode => !currentMode);
